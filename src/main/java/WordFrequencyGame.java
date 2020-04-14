@@ -8,14 +8,8 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getResult(String sentence) {
-
-        try {
-            List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-            wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-            return formatWordFrequencyResult(wordInfoList);
-        } catch (Exception exception) {
-            return CALCULATE_ERROR;
-        }
+        List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
+        return formatWordFrequencyResult(wordInfoList);
     }
 
     private List<WordInfo> calculateWordFrequency(String sentence) {
@@ -26,6 +20,7 @@ public class WordFrequencyGame {
             int count = Collections.frequency(wordArray, word);
             wordInfoList.add(new WordInfo(word, count));
         }
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
         return wordInfoList;
     }
 
